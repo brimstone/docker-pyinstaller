@@ -29,9 +29,17 @@ fi # [ -f requirements.txt ]
 
 echo "$@"
 
+os="win"
+[ -e /wine ] || os="linux"
+
+bits="i386"
+if python -c 'import sys; print(sys.mxsize > 2 ** 32)' | grep -q True; then
+	bits="amd64"
+fi
+
 if [[ "$@" == "" ]]; then
-    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp *.spec
-    chown -R --reference=. ./dist/windows
+    pyinstaller --clean -y --dist ./dist/$os-$bits --workpath /tmp *.spec
+    chown -R --reference=. ./dist
 else
     sh -c "$@"
 fi # [[ "$@" == "" ]]
