@@ -29,7 +29,7 @@ fi # [ -f requirements.txt ]
 
 echo "$@"
 
-os="win"
+os="windows"
 [ -e /wine ] || os="linux"
 
 bits="i386"
