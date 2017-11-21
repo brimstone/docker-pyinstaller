@@ -33,7 +33,7 @@ os="windows"
 [ -e /wine ] || os="linux"
 
 bits="i386"
-if python -c 'import sys; print(sys.mxsize > 2 ** 32)' | grep -q True; then
+if python -c 'import sys; print(sys.maxsize > 2 ** 32)' | grep -q True; then
 	bits="amd64"
 fi
 
